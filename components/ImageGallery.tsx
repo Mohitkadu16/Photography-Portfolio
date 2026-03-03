@@ -334,7 +334,7 @@ export default function ImageGallery({ images, isTimeline = false }: ImageGaller
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-black/0 transition-all duration-300 group-hover:bg-black/20" />
+
               </div>
             </PhotoView>
           </motion.div>

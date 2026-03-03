@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import ImageGallery from "./ImageGallery";
 import { galleryData } from "@/lib/data";
@@ -8,6 +8,43 @@ import { galleryData } from "@/lib/data";
 export default function Work() {
   const [activeGallery, setActiveGallery] = useState<"street" | "timeline" | "all">("street");
   const [activeCategory, setActiveCategory] = useState<"buildings" | "animals" | "nature" | "cars">("buildings");
+
+  // Listen to URL hash changes (from mobile nav dropdown links)
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.slice(1);
+      switch (hash) {
+        case "street":
+          setActiveGallery("street");
+          break;
+        case "timeline":
+          setActiveGallery("timeline");
+          break;
+        case "all":
+          setActiveGallery("all");
+          break;
+        case "buildings":
+          setActiveGallery("all");
+          setActiveCategory("buildings");
+          break;
+        case "animals":
+          setActiveGallery("all");
+          setActiveCategory("animals");
+          break;
+        case "nature":
+          setActiveGallery("all");
+          setActiveCategory("nature");
+          break;
+        case "cars":
+          setActiveGallery("all");
+          setActiveCategory("cars");
+          break;
+      }
+    };
+    handleHash(); // handle hash on initial load
+    window.addEventListener("hashchange", handleHash);
+    return () => window.removeEventListener("hashchange", handleHash);
+  }, []);
 
   const allPhotosCategories = [
     { id: "buildings", label: "Buildings/Structures" },
@@ -30,8 +67,9 @@ export default function Work() {
           </h2>
 
           {/* Main Gallery Tabs */}
-          <div className="relative z-30 mb-20 flex flex-wrap justify-center gap-4">
+          <div className="relative z-30 mb-20 flex flex-wrap justify-center gap-4" >
             <button
+              id = "street"
               onClick={() => setActiveGallery("street")}
               className={`rounded-full px-6 py-2 text-sm font-medium transition-all ${
                 activeGallery === "street"
@@ -42,6 +80,7 @@ export default function Work() {
               Street Photography
             </button>
             <button
+              id = "timeline"
               onClick={() => setActiveGallery("timeline")}
               className={`rounded-full px-6 py-2 text-sm font-medium transition-all ${
                 activeGallery === "timeline"
@@ -52,6 +91,7 @@ export default function Work() {
               Timeline Photography
             </button>
             <button
+              id = "all"
               onClick={() => setActiveGallery("all")}
               className={`rounded-full px-6 py-2 text-sm font-medium transition-all ${
                 activeGallery === "all"
@@ -85,19 +125,19 @@ export default function Work() {
           {/* Gallery Content */}
           <div id="street">
             {activeGallery === "street" && (
-              <ImageGallery images={galleryData.street} />
+              <ImageGallery key="street" images={galleryData.street} />
             )}
           </div>
 
           <div id="timeline">
             {activeGallery === "timeline" && (
-              <ImageGallery images={galleryData.timeline} isTimeline />
+              <ImageGallery key="timeline" images={galleryData.timeline} isTimeline />
             )}
           </div>
 
           <div id="all-photos">
             {activeGallery === "all" && (
-              <ImageGallery images={galleryData.allPhotos[activeCategory]} />
+              <ImageGallery key={`all-${activeCategory}`} images={galleryData.allPhotos[activeCategory]} />
             )}
           </div>
         </motion.div>
