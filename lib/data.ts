@@ -146,6 +146,25 @@ export const galleryData = {
       alt: "Instagram post from January 30, 2026",
       caption: "SoBo to NoBo | EP 1. Just walking Mumbai with feelings & my vision from a decade ago = 2016.......",
     },
+    {
+      id: 7,
+      images: [
+        "/images/timeline/sobo-nobo ep2/sobo-nobo ep2 1.webp",
+        "/images/timeline/sobo-nobo ep2/sobo-nobo ep2 2.webp",
+        "/images/timeline/sobo-nobo ep2/sobo-nobo ep2 3.webp",
+        "/images/timeline/sobo-nobo ep2/sobo-nobo ep2 4.webp",
+        "/images/timeline/sobo-nobo ep2/sobo-nobo ep2 5.webp",
+        "/images/timeline/sobo-nobo ep2/sobo-nobo ep2 6.webp",
+        "/images/timeline/sobo-nobo ep2/sobo-nobo ep2 7.webp",
+        "/images/timeline/sobo-nobo ep2/sobo-nobo ep2 8.webp",
+        "/images/timeline/sobo-nobo ep2/sobo-nobo ep2 9.webp",
+        "/images/timeline/sobo-nobo ep2/sobo-nobo ep2 10.webp",
+      ],
+      instagramUrl: "https://www.instagram.com/p/DWohd2kkd1p/",
+      date: "2026-04-13",
+      alt: "SoBo to NoBo EP 2",
+      caption: "SoBo to NoBo | EP 2. Still chasing old Mumbai through new streets… somewhere between memories & motion.",
+    },
   ],
   allPhotos: {
     buildings: [
