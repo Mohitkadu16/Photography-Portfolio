@@ -3,28 +3,54 @@
 import { motion } from "framer-motion";
 import { skills, gear } from "@/lib/data";
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.15 },
+  }),
+};
+
 export default function SkillsGear() {
   return (
-    <section id="skills" className="bg-neutral-900 py-12">
-      <h2 className="mb-8 text-center text-4xl font-bold text-white md:text-5xl">
-        Skills & Gear
-      </h2>
+    <section id="skills" className="bg-black py-20">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        {/* Section number + heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-14 text-center"
+        >
+          <p className="mb-2 font-mono text-[11px] tracking-[0.4em] text-amber-400/70 uppercase">
+            001 —
+          </p>
+          <h2 className="font-bebas text-6xl text-white md:text-7xl">
+            Skills &amp; Gear
+          </h2>
+          <div className="mx-auto mt-4 h-px w-12 bg-amber-400/50" />
+        </motion.div>
+
         <div className="grid gap-8 md:grid-cols-2">
           {/* Skills */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            variants={cardVariants}
+            custom={0}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="rounded-lg bg-neutral-800 p-6"
+            className="rounded-none border border-white/8 bg-neutral-900/40 p-8"
           >
-            <h3 className="mb-4 text-lg font-semibold text-white text-center">Skills</h3>
+            <h3 className="mb-6 font-mono text-xs tracking-[0.3em] text-neutral-400 uppercase">
+              Photography Skills
+            </h3>
             <div className="flex flex-wrap gap-2 justify-center">
               {skills.map((skill, index) => (
                 <span
                   key={index}
-                  className="rounded-full bg-neutral-700 px-3 py-1 text-sm text-neutral-200 items-center justify-center"
+                  className="border border-white/10 bg-white/5 px-3 py-1.5 font-mono text-xs text-neutral-200 transition-all hover:border-amber-400/40 hover:text-amber-400 uppercase tracking-wider"
                 >
                   {skill}
                 </span>
@@ -34,18 +60,21 @@ export default function SkillsGear() {
 
           {/* Gear */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            variants={cardVariants}
+            custom={1}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="rounded-lg bg-neutral-800 p-6"
+            className="rounded-none border border-white/8 bg-neutral-900/40 p-8"
           >
-            <h3 className="mb-4 text-lg font-semibold text-white text-center">Device/Gear</h3>
+            <h3 className="mb-6 font-mono text-xs tracking-[0.3em] text-neutral-400 uppercase">
+              Device / Gear
+            </h3>
             <div className="flex flex-wrap gap-2 justify-center">
               {gear.map((item, index) => (
                 <span
                   key={index}
-                  className="rounded-full bg-neutral-700 px-3 py-1 text-sm text-neutral-200 items-center justify-center"
+                  className="border border-white/10 bg-white/5 px-3 py-1.5 font-mono text-xs text-neutral-200 transition-all hover:border-amber-400/40 hover:text-amber-400 uppercase tracking-wider"
                 >
                   {item}
                 </span>

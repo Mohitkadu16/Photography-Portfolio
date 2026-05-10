@@ -78,9 +78,13 @@ export default function Work() {
           transition={{ duration: 0.6 }}
         >
           {/* Section heading */}
-          <h2 className="mb-10 text-center text-4xl font-bold text-white md:text-5xl">
+          <p className="mb-2 text-center font-mono text-[11px] tracking-[0.4em] text-amber-400/70 uppercase">
+            002 —
+          </p>
+          <h2 className="mb-2 text-center font-bebas text-6xl text-white md:text-7xl">
             Work
           </h2>
+          <div className="mx-auto mb-10 mt-4 h-px w-12 bg-amber-400/50" />
 
           {/* ── SoBo → NoBo Featured Banner ── */}
           <SoBoNoBoBanner onViewSeries={() => setShowTabs(false)} />

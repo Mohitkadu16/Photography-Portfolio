@@ -77,7 +77,7 @@ export default function Navigation() {
           {/* Logo */}
           <a
             href="#home"
-            className="text-xl font-bold text-white transition-opacity hover:opacity-80"
+            className="font-bebas text-2xl text-white transition-opacity hover:opacity-70"
           >
             loyalmanuka
           </a>
@@ -88,9 +88,10 @@ export default function Navigation() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-neutral-200 transition-colors hover:text-white"
+                data-text={link.label.toUpperCase()}
+                className="glitch-link font-mono text-xs font-medium tracking-widest text-neutral-300 transition-colors hover:text-white uppercase"
               >
-                {link.label}
+                {link.label.toUpperCase()}
               </a>
             ))}
           </div>

@@ -5,7 +5,7 @@ import { contactInfo } from "@/lib/data";
 
 export default function Contact() {
   return (
-    <section id="contact" className="bg-neutral-900 py-16">
+    <section id="contact" className="bg-black py-20">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -14,12 +14,16 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h2 className="mb-6 text-4xl font-bold text-white md:text-5xl">
+          <p className="mb-2 font-mono text-[11px] tracking-[0.4em] text-amber-400/70 uppercase">
+            005 —
+          </p>
+          <h2 className="font-bebas text-6xl text-white md:text-7xl">
             Get In Touch
           </h2>
+          <div className="mx-auto mt-4 mb-6 h-px w-12 bg-amber-400/50" />
 
-          <p className="mb-12 text-xl text-neutral-300">
-            Seeking clients and projects related to photography. Let's connect and create something amazing together!
+          <p className="mb-12 text-base text-neutral-500">
+            Seeking clients and projects related to photography. Let&apos;s connect and create something amazing together!
           </p>
 
           {/* Two Column Layout: Form Left, Contact Options Right */}
@@ -39,7 +43,7 @@ export default function Contact() {
                   id="name"
                   name="name"
                   required
-                  className="w-full rounded-lg border border-neutral-700 bg-transparent px-4 py-3 text-white placeholder-neutral-500 transition-colors focus:border-neutral-500 focus:outline-none focus:ring-1 focus:ring-neutral-500"
+                  className="w-full border border-white/10 bg-white/5 px-4 py-3 font-mono text-sm text-white placeholder-neutral-600 transition-colors focus:border-amber-400/50 focus:outline-none focus:ring-1 focus:ring-amber-400/30"
                   placeholder="John Doe"
                 />
               </div>
@@ -53,7 +57,7 @@ export default function Contact() {
                   id="email"
                   name="email"
                   required
-                  className="w-full rounded-lg border border-neutral-700 bg-transparent px-4 py-3 text-white placeholder-neutral-500 transition-colors focus:border-neutral-500 focus:outline-none focus:ring-1 focus:ring-neutral-500"
+                  className="w-full border border-white/10 bg-white/5 px-4 py-3 font-mono text-sm text-white placeholder-neutral-600 transition-colors focus:border-amber-400/50 focus:outline-none focus:ring-1 focus:ring-amber-400/30"
                   placeholder="john@example.com"
                 />
               </div>
@@ -67,14 +71,14 @@ export default function Contact() {
                   name="message"
                   required
                   rows={6}
-                  className="w-full rounded-lg border border-neutral-700 bg-transparent px-4 py-3 text-white placeholder-neutral-500 transition-colors focus:border-neutral-500 focus:outline-none focus:ring-1 focus:ring-neutral-500"
+                  className="w-full border border-white/10 bg-white/5 px-4 py-3 font-mono text-sm text-white placeholder-neutral-600 transition-colors focus:border-amber-400/50 focus:outline-none focus:ring-1 focus:ring-amber-400/30"
                   placeholder="Your message here..."
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full rounded-lg bg-white px-6 py-3 font-semibold text-neutral-900 transition-all hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-900"
+                className="w-full bg-amber-400 px-6 py-4 font-mono text-xs font-bold tracking-widest text-black transition-all hover:bg-amber-300 uppercase"
               >
                 Send Message
               </button>
@@ -162,8 +166,8 @@ export default function Contact() {
           </div>
 
           {/* Footer */}
-          <div className="mt-16 border-t border-neutral-800 pt-8 text-sm text-neutral-500">
-            <p>© 2026 loyalmanuka. All rights reserved.</p>
+          <div className="mt-16 border-t border-white/8 pt-8">
+            <p className="font-mono text-[11px] tracking-widest text-neutral-600 uppercase">© 2026 loyalmanuka. All rights reserved.</p>
           </div>
         </motion.div>
       </div>
