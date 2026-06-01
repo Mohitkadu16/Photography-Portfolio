@@ -262,9 +262,9 @@ galleryData.street.forEach(img => {
 });
 
 // 2. Add timeline images
-galleryData.timeline.forEach(post => {
+galleryData.timeline.forEach((post: any) => {
   if (post.images) {
-    post.images.forEach(img => {
+    post.images.forEach((img: string) => {
       allImageSources.push({ src: img, alt: post.alt || post.caption || "Timeline photo" });
     });
   } else if (post.src) {
