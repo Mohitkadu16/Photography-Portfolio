@@ -17,6 +17,14 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const workSubLinks = [
+    { hash: "street", label: "Street Photography", icon: "🏙️" },
+    { hash: "timeline", label: "Timeline", icon: "📅" },
+    { hash: "sobonobo", label: "SoBo → NoBo Series", icon: "🗺️" },
+    { hash: "digicam", label: "Digicam Vision", icon: "📸" },
+    { hash: "all", label: "All Photos", icon: "🖼️" },
+  ];
+
   const navLinks = [
     { href: "#skills", label: "Skills & Gear" },
     { href: "#work", label: "Work" },
@@ -29,7 +37,9 @@ export default function Navigation() {
     { href: "#buildings", label: "Buildings / Structures" },
     { href: "#animals", label: "Animals / Birds / Insects" },
     { href: "#nature", label: "Nature / Scenery" },
-    { href: "#cars", label: "Cars" },
+    { href: "#cars", label: "Cars / Vehicles" },
+    { href: "#culture", label: "Culture / Festivals" },
+    { href: "#street-photos", label: "Street / Urban Life" },
   ];
 
   const closeMobileMenu = () => {
@@ -84,16 +94,53 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-8 md:flex">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                data-text={link.label.toUpperCase()}
-                className="glitch-link font-mono text-xs font-medium tracking-widest text-neutral-300 transition-colors hover:text-white uppercase"
-              >
-                {link.label.toUpperCase()}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              if (link.label === "Work") {
+                return (
+                  <div key={link.href} className="relative group py-4">
+                    <a
+                      href={link.href}
+                      data-text={link.label.toUpperCase()}
+                      className="glitch-link font-mono text-xs font-medium tracking-widest text-neutral-300 transition-colors hover:text-white uppercase flex items-center gap-1 cursor-pointer"
+                    >
+                      {link.label.toUpperCase()}
+                      <svg className="w-3 h-3 text-neutral-500 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </a>
+
+                    {/* Desktop Hover Dropdown Menu */}
+                    <div className="absolute top-[80%] left-1/2 -translate-x-1/2 mt-1 w-56 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 z-50">
+                      {/* Invisible bridge to prevent mouse-leave when moving cursor down */}
+                      <div className="absolute -top-6 left-0 right-0 h-6 bg-transparent" />
+                      
+                      <div className="rounded-xl border border-white/10 bg-black/95 p-2 shadow-2xl backdrop-blur-md">
+                        {workSubLinks.map((sub) => (
+                          <button
+                            key={sub.hash}
+                            onClick={() => handleGalleryNav(sub.hash)}
+                            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-xs font-medium font-mono text-neutral-400 hover:bg-amber-400/10 hover:text-amber-400 transition-all"
+                          >
+                            <span>{sub.icon}</span>
+                            <span>{sub.label.toUpperCase()}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  data-text={link.label.toUpperCase()}
+                  className="glitch-link font-mono text-xs font-medium tracking-widest text-neutral-300 transition-colors hover:text-white uppercase"
+                >
+                  {link.label.toUpperCase()}
+                </a>
+              );
+            })}
           </div>
 
           {/* Mobile Menu Button */}
@@ -175,6 +222,22 @@ export default function Navigation() {
                             className="block w-full text-left rounded-md px-3 py-2 text-sm font-medium text-neutral-400 transition-colors hover:bg-white/10 hover:text-white"
                           >
                             Timeline
+                          </button>
+
+                          {/* SoBo → NoBo Series */}
+                          <button
+                            onClick={() => handleGalleryNav("sobonobo")}
+                            className="block w-full text-left rounded-md px-3 py-2 text-sm font-medium text-neutral-400 transition-colors hover:bg-white/10 hover:text-white"
+                          >
+                            SoBo → NoBo Series
+                          </button>
+
+                          {/* Digicam Vision */}
+                          <button
+                            onClick={() => handleGalleryNav("digicam")}
+                            className="block w-full text-left rounded-md px-3 py-2 text-sm font-medium text-neutral-400 transition-colors hover:bg-white/10 hover:text-white"
+                          >
+                            Digicam Vision
                           </button>
 
                           {/* All Photos with nested dropdown */}

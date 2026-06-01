@@ -12,6 +12,9 @@ const floatingCards = [
   { src: "/images/timeline/sobo-nobo ep2/sobo-nobo ep2 1.webp", top: "50%", left: "40%", rotate: 13,  depth: 0.048, z: 4 },
   { src: "/images/timeline/sobo-nobo ep2/sobo-nobo ep2 4.webp", top: "52%", left: "63%", rotate: -9,  depth: 0.032, z: 6 },
   { src: "/images/timeline/sobo-nobo ep2/sobo-nobo ep2 7.webp", top: "16%", left: "81%", rotate: 6,   depth: 0.018, z: 1 },
+  { src: "/images/digicam/digicam_1.jpg", top: "32%", left: "73%", rotate: -15, depth: 0.024, z: 7, label: "Digicam" },
+  { src: "/images/digicam/digicam_5.jpg", top: "66%", left: "51%", rotate: 8,   depth: 0.045, z: 8, label: "Digicam" },
+  { src: "/images/digicam/digicam_9.jpg", top: "68%", left: "75%", rotate: -7,  depth: 0.034, z: 9, label: "Digicam" },
 ];
 
 export default function Hero() {
@@ -80,9 +83,9 @@ export default function Hero() {
           }
           whileHover={{ scale: 1.06, zIndex: 20 }}
         >
-          <Image src={card.src} alt={`SoBo to NoBo ${i + 1}`} fill className="object-cover" sizes="150px" />
+          <Image src={card.src} alt={card.label || `SoBo to NoBo ${i + 1}`} fill className="object-cover" sizes="150px" />
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2">
-            <p className="font-mono text-[8px] tracking-widest text-white/50 uppercase">SoBo · NoBo</p>
+            <p className="font-mono text-[8px] tracking-widest text-white/50 uppercase">{card.label || "SoBo · NoBo"}</p>
           </div>
         </motion.div>
       ))}

@@ -166,77 +166,151 @@ export const galleryData = {
       caption: "SoBo to NoBo | EP 2. Still chasing old Mumbai through new streets… somewhere between memories & motion.",
     },
   ],
-  allPhotos: {
-    buildings: [
-      {
-        id: 1,
-        src: "/images/all-photos/buildings/bmc-office.jpg",
-        alt: "BMC Office building",
-      },
-      {
-        id: 2,
-        src: "/images/all-photos/buildings/taj-hotel.jpg",
-        alt: "Taj Hotel",
-      },
-      {
-        id: 3,
-        src: "/images/all-photos/buildings/white-clock-bldg.jpg",
-        alt: "White clock building",
-      },
-    ],
-    animals: [
-      {
-        id: 1,
-        src: "/images/all-photos/animals/Cats-roaming.jpg",
-        alt: "Cats roaming",
-      },
-      {
-        id: 2,
-        src: "/images/all-photos/animals/cat-at-painting.jpg",
-        alt: "Cat at painting",
-      },
-      {
-        id: 3,
-        src: "/images/all-photos/animals/sleeping-cats.jpg",
-        alt: "Sleeping cats",
-      },
-    ],
-    nature: [
-      {
-        id: 1,
-        src: "/images/all-photos/nature/nature 1.webp",
-        alt: "Nature photography 1",
-      },
-      {
-        id: 2,                                                                  
-        src: "/images/all-photos/nature/nature 2.webp",
-        alt: "Nature photography 2",
-      },
-      {
-        id: 3,
-        src: "/images/all-photos/nature/nature 3.jpg",
-        alt: "Nature photography 3",
-      },
-    ],
-    cars: [
-      {
-        id: 1,
-        src: "/images/all-photos/cars/premier padmini.jpg",
-        alt: "Car photography 1",
-      },
-      {
-        id: 2,
-        src: "/images/all-photos/cars/car 2.jpg",
-        alt: "Car photography 2",
-      },
-      {
-        id: 3,
-        src: "/images/all-photos/cars/car 3.jpg",
-        alt: "Car photography 3",
-      },
-    ],
-  },
+  digicam: [
+    { id: 1, src: "/images/digicam/digicam_1.jpg", alt: "CCD Vision — Frame 1" },
+    { id: 2, src: "/images/digicam/digicam_2.jpg", alt: "CCD Vision — Frame 2" },
+    { id: 3, src: "/images/digicam/digicam_3.jpg", alt: "CCD Vision — Frame 3" },
+    { id: 4, src: "/images/digicam/digicam_4.jpg", alt: "CCD Vision — Frame 4" },
+    { id: 5, src: "/images/digicam/digicam_5.jpg", alt: "CCD Vision — Frame 5" },
+    { id: 6, src: "/images/digicam/digicam_6.jpg", alt: "CCD Vision — Frame 6" },
+    { id: 7, src: "/images/digicam/digicam_7.jpg", alt: "CCD Vision — Frame 7" },
+    { id: 8, src: "/images/digicam/digicam_8.jpg", alt: "CCD Vision — Frame 8" },
+    { id: 9, src: "/images/digicam/digicam_9.jpg", alt: "CCD Vision — Frame 9" },
+    { id: 10, src: "/images/digicam/digicam_10.jpg", alt: "CCD Vision — Frame 10" },
+    { id: 11, src: "/images/digicam/digicam_11.jpg", alt: "CCD Vision — Frame 11" },
+    { id: 12, src: "/images/digicam/digicam_12.jpg", alt: "CCD Vision — Frame 12" },
+    { id: 13, src: "/images/digicam/digicam_13.jpg", alt: "CCD Vision — Frame 13" },
+    { id: 14, src: "/images/digicam/digicam_14.jpg", alt: "CCD Vision — Frame 14" },
+    { id: 15, src: "/images/digicam/digicam_15.jpg", alt: "CCD Vision — Frame 15" },
+    { id: 16, src: "/images/digicam/digicam_16.jpg", alt: "CCD Vision — Frame 16" },
+    { id: 17, src: "/images/digicam/digicam_17.jpg", alt: "CCD Vision — Frame 17" }
+  ],
+  allPhotos: {} as Record<string, { id: number; src: string; alt: string }[]>
 };
+
+export const categoriesConfig = [
+  { id: "buildings", label: "Buildings / Structures" },
+  { id: "animals", label: "Animals / Birds / Insects" },
+  { id: "nature", label: "Nature / Scenery" },
+  { id: "cars", label: "Cars / Vehicles" },
+  { id: "culture", label: "Culture / Festivals" },
+  { id: "street", label: "Street / Urban Life" },
+] as const;
+
+// Raw original allPhotos to seed the categorizer
+const rawAllPhotos = [
+  { src: "/images/all-photos/buildings/bmc-office.jpg", alt: "BMC Office building" },
+  { src: "/images/all-photos/buildings/taj-hotel.jpg", alt: "Taj Hotel" },
+  { src: "/images/all-photos/buildings/white-clock-bldg.jpg", alt: "White clock building" },
+  { src: "/images/all-photos/animals/Cats-roaming.jpg", alt: "Cats roaming" },
+  { src: "/images/all-photos/animals/cat-at-painting.jpg", alt: "Cat at painting" },
+  { src: "/images/all-photos/animals/sleeping-cats.jpg", alt: "Sleeping cats" },
+  { src: "/images/all-photos/nature/nature 1.webp", alt: "Nature photography 1" },
+  { src: "/images/all-photos/nature/nature 2.webp", alt: "Nature photography 2" },
+  { src: "/images/all-photos/nature/nature 3.jpg", alt: "Nature photography 3" },
+  { src: "/images/all-photos/cars/premier padmini.jpg", alt: "Car photography 1" },
+  { src: "/images/all-photos/cars/car 2.jpg", alt: "Car photography 2" },
+  { src: "/images/all-photos/cars/car 3.jpg", alt: "Car photography 3" },
+];
+
+function getCategory(src: string): string {
+  const path = src.toLowerCase();
+  if (path.includes("animal") || path.includes("cat") || path.includes("dog") || path.includes("bird") || path.includes("insect")) {
+    return "animals";
+  }
+  if (path.includes("car") || path.includes("taxi") || path.includes("premier") || path.includes("padmini") || path.includes("vehicle")) {
+    return "cars";
+  }
+  if (
+    path.includes("building") || 
+    path.includes("hotel") || 
+    path.includes("office") || 
+    path.includes("bldg") || 
+    path.includes("gate") || 
+    path.includes("monument") || 
+    path.includes("taj") || 
+    path.includes("bmc") || 
+    path.includes("clock") ||
+    path.includes("structure")
+  ) {
+    return "buildings";
+  }
+  if (
+    path.includes("nature") || 
+    path.includes("scenery") || 
+    path.includes("kholhapur") || 
+    path.includes("lake") || 
+    path.includes("tree") || 
+    path.includes("mountain") || 
+    path.includes("sky") ||
+    path.includes("sunset")
+  ) {
+    return "nature";
+  }
+  if (path.includes("ganapati") || path.includes("ganesh") || path.includes("festival")) {
+    return "culture";
+  }
+  return "street";
+}
+
+// Compile all unique images from all sections of data.ts
+const allImageSources: { src: string; alt: string }[] = [];
+
+// 1. Add street images
+galleryData.street.forEach(img => {
+  allImageSources.push({ src: img.src, alt: img.alt });
+});
+
+// 2. Add timeline images
+galleryData.timeline.forEach(post => {
+  if (post.images) {
+    post.images.forEach(img => {
+      allImageSources.push({ src: img, alt: post.alt || post.caption || "Timeline photo" });
+    });
+  } else if (post.src) {
+    allImageSources.push({ src: post.src, alt: post.alt || post.caption || "Timeline photo" });
+  }
+});
+
+// 3. Add digicam images
+galleryData.digicam.forEach(img => {
+  allImageSources.push({ src: img.src, alt: img.alt });
+});
+
+// 4. Add original raw all-photos
+rawAllPhotos.forEach(img => {
+  allImageSources.push({ src: img.src, alt: img.alt });
+});
+
+// Deduplicate by source URL
+const uniqueImageSourcesMap = new Map<string, string>();
+allImageSources.forEach(img => {
+  uniqueImageSourcesMap.set(img.src, img.alt);
+});
+
+// Distribute into categories
+const categorizedPhotos: Record<string, { id: number; src: string; alt: string }[]> = {
+  buildings: [],
+  animals: [],
+  nature: [],
+  cars: [],
+  culture: [],
+  street: []
+};
+
+let uniqueId = 1;
+uniqueImageSourcesMap.forEach((alt, src) => {
+  const cat = getCategory(src);
+  if (categorizedPhotos[cat]) {
+    categorizedPhotos[cat].push({
+      id: uniqueId++,
+      src,
+      alt
+    });
+  }
+});
+
+galleryData.allPhotos = categorizedPhotos;
 
 export const bioText = "Diploma holder in Electronics & Telecommunication based in Mumbai, India, with a passion for photography and a keen eye for capturing authentic moments. Using creativity and technical skill to tell compelling visual stories through street and urban photography. Currently seeking clients and projects to collaborate on and bring creative visions to life.";
 
@@ -244,6 +318,7 @@ export const skills = [
   "Composition",
   "Natural Light",
   "Photo Editing",
+  "Colour Grading",
   "Street Photography",
   "Visual Storytelling",
   "Adobe Lightroom",
@@ -253,6 +328,9 @@ export const gear = [
   "Oppo F31 Pro+",
   "f/1.8",
   "50MP",
+  "DC403 Digicam",
+  "f/3.2",
+  "44MP",
 ];
 
 export const contactInfo = {

@@ -14,6 +14,8 @@ interface EPCardProps {
   instagramUrl?: string;
   onViewSeries: () => void;
   comingSoon?: boolean;
+  title?: string;
+  badge?: string;
 }
 
 function EPCard({
@@ -24,6 +26,8 @@ function EPCard({
   instagramUrl,
   onViewSeries,
   comingSoon = false,
+  title,
+  badge,
 }: EPCardProps) {
   const [currentImg, setCurrentImg] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -129,14 +133,14 @@ function EPCard({
           {/* Badges row */}
           <div className="flex items-center gap-2 flex-wrap">
             <span className="inline-flex items-center rounded-full border border-amber-400/50 bg-amber-400/10 px-2.5 py-0.5 text-[10px] font-semibold tracking-widest text-amber-400 backdrop-blur-sm">
-              SOBO → NOBO
+              {badge || "SOBO → NOBO"}
             </span>
             <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-mono backdrop-blur-sm border ${
               comingSoon
                 ? "bg-white/5 text-white/20 border-white/10"
                 : "bg-white/10 text-white/60 border-white/10"
             }`}>
-              {comingSoon ? "EP. 02 · TBA" : `EP. 0${ep} · ${date}`}
+              {comingSoon ? "EP. 02 · TBA" : ep === 3 ? `${date}` : `EP. 0${ep} · ${date}`}
             </span>
           </div>
 
@@ -147,15 +151,17 @@ function EPCard({
             }`}
             style={!comingSoon ? { textShadow: "0 2px 20px rgba(0,0,0,0.9)" } : {}}
           >
-            SoBo{" "}
-            <span className={
-              comingSoon
-                ? "text-white/20"
-                : "bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent"
-            }>
-              →
-            </span>{" "}
-            NoBo
+            {title ? (
+              title
+            ) : (
+              <>
+                SoBo{" "}
+                <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
+                  →
+                </span>{" "}
+                NoBo
+              </>
+            )}
           </h3>
 
           {/* Caption — EP1 only */}
@@ -219,7 +225,7 @@ function EPCard({
                 <div className="flex items-center gap-2">
                   <div className="h-px w-6 bg-amber-400" />
                   <span className="text-[10px] font-mono text-amber-400 tracking-widest uppercase">
-                    EP. 0{ep} — All Frames
+                    {badge ? `${badge} — All Frames` : `EP. 0${ep} — All Frames`}
                   </span>
                 </div>
                 <span className="text-[10px] font-mono text-neutral-500">
@@ -322,6 +328,7 @@ export default function SoBoNoBoBanner({ onViewSeries }: SoBoNoBoBannerProps) {
 
   const ep1Photos = ep1?.images ?? [];
   const ep2Photos = ep2?.images ?? [];
+  const digicamPhotos = galleryData.digicam.map((d) => d.src);
 
   return (
     <div className="mb-20">
@@ -366,8 +373,8 @@ export default function SoBoNoBoBanner({ onViewSeries }: SoBoNoBoBannerProps) {
         </motion.p>
       </motion.div>
 
-      {/* Two EP cards side by side */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 items-start">
+      {/* Three EP cards side by side */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 items-start">
         <EPCard
           ep={1}
           date="JAN 2026"
@@ -382,6 +389,16 @@ export default function SoBoNoBoBanner({ onViewSeries }: SoBoNoBoBannerProps) {
           photos={ep2Photos}
           caption={ep2?.caption}
           instagramUrl={ep2?.instagramUrl}
+          onViewSeries={onViewSeries}
+        />
+        <EPCard
+          ep={3}
+          date="VINTAGE"
+          title="CCD Bombay"
+          badge="CCD BOMBAY"
+          photos={digicamPhotos}
+          caption="Chasing nostalgic Bombay moments through the organic grain and vintage lens of a classic CCD sensor."
+          instagramUrl="https://instagram.com/loyalmanuka"
           onViewSeries={onViewSeries}
         />
       </div>
