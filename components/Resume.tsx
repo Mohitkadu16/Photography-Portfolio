@@ -44,7 +44,7 @@ export default function Resume() {
             </div>
 
             <a
-              href="/images/mohitkadu-loyalmanuka-portfolio.pdf"
+              href="/images/@loyalmanuka.pdf"
               download
               className="inline-flex items-center gap-3 bg-amber-400 px-8 py-4 font-mono text-xs font-bold tracking-widest text-black transition-all hover:bg-amber-300 uppercase"
             >
