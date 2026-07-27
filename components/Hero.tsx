@@ -141,6 +141,7 @@ export default function Hero() {
               "Visual Storyteller",            2200,
               "Urban Lifestyle Photographer",  2200,
               "Mumbai Through My Lens",        2200,
+              "'Top 100' #19 Winner In Mobile Photography at Wallmag Competition", 22000,
             ]}
             wrapper="span"
             speed={55}
@@ -166,6 +167,13 @@ export default function Hero() {
             className="border border-white/40 px-6 py-3 font-mono text-xs tracking-widest text-white transition-all hover:border-white hover:bg-white/5 uppercase"
           >
             ABOUT ME
+          </a>
+          <a
+            href="#resume"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 border border-amber-400/50 bg-amber-400/10 px-6 py-3 font-mono text-xs tracking-widest text-amber-400 transition-all hover:bg-amber-400/20 uppercase"
+          >
+            🏆 Wallmag Winner
           </a>
         </motion.div>
       </div>

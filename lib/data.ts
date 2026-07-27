@@ -338,3 +338,28 @@ export const contactInfo = {
   instagram: "https://instagram.com/loyalmanuka",
   location: "Mumbai, India",
 };
+
+export const btsData = [
+  {
+    id: 1,
+    title: "The making of SoBo to NoBo",
+    date: "April 2026",
+    location: "South Bombay",
+    story: "Walking the streets of Mumbai with a vision from a decade ago. It took hours of waiting for the perfect light to capture the true essence of SoBo.\n\nI shot the raw image with an underexposed setting to retain the highlights in the sky. In post-production, I brought up the shadows and added a warm vintage color grade to evoke that 2016 nostalgia.",
+    images: [
+      { src: "https://images.unsplash.com/photo-1555529733-0e670560f8e1?q=80&w=1200&auto=format&fit=crop", alt: "Raw Image Placeholder", label: "RAW UNEDITED" },
+      { src: "https://images.unsplash.com/photo-1555529771-872f2e71eddf?q=80&w=1200&auto=format&fit=crop", alt: "Edited Image Placeholder", label: "FINAL EDIT" },
+    ]
+  },
+  {
+    id: 2,
+    title: "Chasing the perfect CCD shot",
+    date: "May 2026",
+    location: "Kala Ghoda",
+    story: "Nostalgia hits different when you are using an old digicam. The DC403 sensor has this beautiful, imperfect way of rendering reds and yellows.\n\nNo heavy editing was needed here, just a slight contrast bump to emphasize the retro look.",
+    images: [
+      { src: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=1200&auto=format&fit=crop", alt: "Digicam Raw", label: "STRAIGHT OUT OF CAMERA" },
+      { src: "https://images.unsplash.com/photo-1518005068251-37900150dfca?q=80&w=1200&auto=format&fit=crop", alt: "Digicam Edited", label: "COLOR GRADED" }
+    ]
+  }
+];

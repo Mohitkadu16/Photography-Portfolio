@@ -25,6 +25,27 @@ export default function Resume() {
 
           <div className="mx-auto max-w-2xl border border-white/8 bg-neutral-900/40 p-10">
             <h3 className="mb-2 font-mono text-[11px] tracking-[0.3em] text-neutral-500 uppercase">
+              Awards & Achievements
+            </h3>
+
+            <div className="mb-10 flex flex-col items-center justify-center gap-3">
+              <a
+                href="/images/Wallmag Mobile Photography Certificate.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative flex w-full max-w-md items-center gap-4 border border-amber-400/30 bg-amber-400/5 p-4 transition-all hover:bg-amber-400/10"
+              >
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center bg-amber-400/20 text-2xl">
+                  🏆
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="font-bebas text-2xl text-amber-400 tracking-wide">Wallmag Mobile Photography</span>
+                  <span className="font-mono text-[10px] text-neutral-400 uppercase tracking-widest">Competition Winner • View Certificate</span>
+                </div>
+              </a>
+            </div>
+
+            <h3 className="mb-2 mt-8 font-mono text-[11px] tracking-[0.3em] text-neutral-500 uppercase">
               Photography Skills
             </h3>
 

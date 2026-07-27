@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import Navigation from "@/components/Navigation";
 import SkillsGear from "@/components/SkillsGear";
 import Work from "@/components/Work";
+// import BtsSection from "@/components/BtsSection";
 import About from "@/components/About";
 import Resume from "@/components/Resume";
 import Contact from "@/components/Contact";
@@ -19,6 +20,7 @@ export default function Home() {
       <MarqueeBanner />
       <SkillsGear />
       <Work />
+      {/* <BtsSection /> */}
       <About />
       <Resume />
       <Contact />
