@@ -141,7 +141,8 @@ export default function Hero() {
               "Visual Storyteller",            2200,
               "Urban Lifestyle Photographer",  2200,
               "Mumbai Through My Lens",        2200,
-              "'Top 100' #19 Winner In Mobile Photography at Wallmag Competition", 22000,
+              "'Top 100' #19 Finalist In Mobile Photography at Wallmag Competition", 22000,
+              "'Top 100' #70 Finalist In Travel Photography at Wallmag Competition", 22000,
             ]}
             wrapper="span"
             speed={55}

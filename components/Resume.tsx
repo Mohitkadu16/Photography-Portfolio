@@ -40,7 +40,24 @@ export default function Resume() {
                 </div>
                 <div className="flex flex-col text-left">
                   <span className="font-bebas text-2xl text-amber-400 tracking-wide">Wallmag Mobile Photography</span>
-                  <span className="font-mono text-[10px] text-neutral-400 uppercase tracking-widest">Competition Winner • View Certificate</span>
+                  <span className="font-mono text-[10px] text-neutral-400 uppercase tracking-widest">Top 100 Finalist #19 Rank • View Certificate</span>
+                </div>
+              </a>
+            </div>
+
+            <div className="mb-10 flex flex-col items-center justify-center gap-3">
+              <a
+                href="/images/travel photography award wallmag.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative flex w-full max-w-md items-center gap-4 border border-amber-400/30 bg-amber-400/5 p-4 transition-all hover:bg-amber-400/10"
+              >
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center bg-amber-400/20 text-2xl">
+                  🏆
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="font-bebas text-2xl text-amber-400 tracking-wide">Wallmag Travel Photography</span>
+                  <span className="font-mono text-[10px] text-neutral-400 uppercase tracking-widest">Top 100 Finalist #70 Rank • View Certificate</span>
                 </div>
               </a>
             </div>
@@ -65,8 +82,9 @@ export default function Resume() {
             </div>
 
             <a
-              href="/images/@loyalmanuka.pdf"
-              download
+              href="/images/@loyalmanuka (4).pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-amber-400 px-8 py-4 font-mono text-xs font-bold tracking-widest text-black transition-all hover:bg-amber-300 uppercase"
             >
               <svg className="h-4 w-4" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">

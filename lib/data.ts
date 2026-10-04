@@ -336,6 +336,9 @@ export const gear = [
 export const contactInfo = {
   email: "mohitkadu13@gmail.com",
   instagram: "https://instagram.com/loyalmanuka",
+  threads: "https://www.threads.net/@loyalmanuka",
+  reddit: "https://www.reddit.com/user/Fair-Department-7535/",
+  wallmag: "https://wallmag.io/loyalmanuka",
   location: "Mumbai, India",
 };
 

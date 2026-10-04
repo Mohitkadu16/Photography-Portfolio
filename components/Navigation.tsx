@@ -2,12 +2,27 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isWorkDropdownOpen, setIsWorkDropdownOpen] = useState(false);
   const [isAllPhotosDropdownOpen, setIsAllPhotosDropdownOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  // Prefix hash links with '/' when not on home so they navigate back correctly
+  const resolveHref = (href: string) => {
+    if (href.startsWith("#") && !isHome) return `/${href}`;
+    return href;
+  };
+
+  const resolveWorkHash = (hash: string) => {
+    if (!isHome) return `/#${hash}`;
+    return `#${hash}`;
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +46,7 @@ export default function Navigation() {
     { href: "#about", label: "About" },
     { href: "#resume", label: "Resume" },
     { href: "#contact", label: "Contact" },
+    { href: "#blog", label: "Blog" },
   ];
 
   const allPhotosSubLinks = [
@@ -50,9 +66,13 @@ export default function Navigation() {
 
   const handleGalleryNav = (hash: string) => {
     closeMobileMenu();
-    // Set the hash so Work.tsx picks it up via hashchange
+    if (!isHome) {
+      // Navigate to homepage with the hash — the hashchange listener in Work.tsx will pick it up
+      window.location.href = `/#${hash}`;
+      return;
+    }
+    // Already on home: just set hash and scroll
     window.location.hash = hash;
-    // Scroll the work section into view
     setTimeout(() => {
       document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
     }, 50);
@@ -86,7 +106,7 @@ export default function Navigation() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <a
-            href="#home"
+            href={isHome ? "#home" : "/"}
             className="font-bebas text-2xl text-white transition-opacity hover:opacity-70"
           >
             loyalmanuka
@@ -99,7 +119,7 @@ export default function Navigation() {
                 return (
                   <div key={link.href} className="relative group py-4">
                     <a
-                      href={link.href}
+                      href={resolveHref(link.href)}
                       data-text={link.label.toUpperCase()}
                       className="glitch-link font-mono text-xs font-medium tracking-widest text-neutral-300 transition-colors hover:text-white uppercase flex items-center gap-1 cursor-pointer"
                     >
@@ -116,24 +136,33 @@ export default function Navigation() {
                       
                       <div className="rounded-xl border border-white/10 bg-black/95 p-2 shadow-2xl backdrop-blur-md">
                         {workSubLinks.map((sub) => (
-                          <button
+                          <a
                             key={sub.hash}
-                            onClick={() => handleGalleryNav(sub.hash)}
+                            href={resolveWorkHash(sub.hash)}
+                            onClick={closeMobileMenu}
                             className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-xs font-medium font-mono text-neutral-400 hover:bg-amber-400/10 hover:text-amber-400 transition-all"
                           >
                             <span>{sub.icon}</span>
                             <span>{sub.label.toUpperCase()}</span>
-                          </button>
+                          </a>
                         ))}
                       </div>
                     </div>
                   </div>
                 );
               }
-              return (
-                <a
+              return link.href.startsWith("/") ? (
+                <Link
                   key={link.href}
                   href={link.href}
+                  className="font-mono text-xs font-medium tracking-widest text-amber-400 transition-colors hover:text-amber-300 uppercase border border-amber-400/40 px-3 py-1 rounded-sm hover:bg-amber-400/10"
+                >
+                  {link.label.toUpperCase()}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={resolveHref(link.href)}
                   data-text={link.label.toUpperCase()}
                   className="glitch-link font-mono text-xs font-medium tracking-widest text-neutral-300 transition-colors hover:text-white uppercase"
                 >
@@ -184,7 +213,7 @@ export default function Navigation() {
                     {/* Work row with chevron */}
                     <div className="flex items-center justify-between">
                       <a
-                        href={link.href}
+                        href={resolveHref(link.href)}
                         onClick={closeMobileMenu}
                         className="block rounded-md px-3 py-2 text-base font-medium text-neutral-200 transition-colors hover:bg-white/10 hover:text-white"
                       >
@@ -268,13 +297,14 @@ export default function Navigation() {
                                   className="ml-4 overflow-hidden border-l border-neutral-800 pl-3"
                                 >
                                   {allPhotosSubLinks.map((sub) => (
-                                    <button
+                                    <a
                                       key={sub.href}
-                                      onClick={() => handleGalleryNav(sub.href.slice(1))}
+                                      href={resolveWorkHash(sub.href.slice(1))}
+                                      onClick={closeMobileMenu}
                                       className="block w-full text-left rounded-md px-3 py-2 text-xs font-medium text-neutral-500 transition-colors hover:bg-white/10 hover:text-white"
                                     >
                                       {sub.label}
-                                    </button>
+                                    </a>
                                   ))}
                                 </motion.div>
                               )}
@@ -284,10 +314,19 @@ export default function Navigation() {
                       )}
                     </AnimatePresence>
                   </div>
+                ) : link.href.startsWith("/") ? (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={closeMobileMenu}
+                    className="block rounded-md px-3 py-2 text-base font-medium text-amber-400 transition-colors hover:bg-amber-400/10"
+                  >
+                    {link.label} ✍️
+                  </Link>
                 ) : (
                   <a
                     key={link.href}
-                    href={link.href}
+                    href={resolveHref(link.href)}
                     onClick={closeMobileMenu}
                     className="block rounded-md px-3 py-2 text-base font-medium text-neutral-200 transition-colors hover:bg-white/10 hover:text-white"
                   >
