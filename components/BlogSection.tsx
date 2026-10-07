@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { getAllPosts } from "@/lib/blog";
 
@@ -19,15 +18,15 @@ export default function BlogSection() {
             The Blog
           </h2>
           <div className="mx-auto mt-4 h-px w-12 bg-amber-400/50" />
-          <p className="mt-6 text-neutral-400 text-sm max-w-xl mx-auto">
-            Coming Soon...
+          <p className="mt-4 text-neutral-400 text-sm max-w-xl mx-auto">
+            Stories, behind-the-scenes reflections, and the journey behind the frames.
           </p>
         </div>
 
         {/* Post Grid */}
-        {/* <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
-            <Link
+            <a
               key={post.slug}
               href={`/blog/${post.slug}`}
               className="group relative flex flex-col overflow-hidden rounded-2xl bg-neutral-900 border border-white/8 transition-all duration-300 hover:border-amber-400/40 hover:shadow-[0_0_30px_rgba(251,191,36,0.05)]"
@@ -36,7 +35,7 @@ export default function BlogSection() {
                 <div className="relative aspect-[16/9] w-full overflow-hidden">
                   <Image
                     src={post.metadata.coverImage}
-                    alt={post.metadata.title}
+                    alt={post.metadata.coverAlt || post.metadata.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -76,9 +75,9 @@ export default function BlogSection() {
                   </svg>
                 </div> 
               </div>
-            </Link>
+            </a>
           ))}
-        </div>*/}
+        </div>
       </div>
     </section>
   );

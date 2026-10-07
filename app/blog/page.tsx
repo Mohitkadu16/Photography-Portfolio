@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { getAllPosts } from "@/lib/blog";
 
@@ -13,6 +12,15 @@ export default function BlogIndex() {
   return (
     <div className="min-h-screen bg-black pt-32 pb-20">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-10">
+          <a
+            href="/#blog"
+            className="inline-flex items-center gap-2 font-mono text-xs tracking-widest text-neutral-400 hover:text-amber-400 transition-colors uppercase cursor-pointer"
+          >
+            <span>←</span> Back to Portfolio
+          </a>
+        </div>
+
         <div className="mb-16 text-center">
           <p className="mb-2 font-mono text-[11px] tracking-[0.4em] text-amber-400/70 uppercase">
             Journal —
@@ -25,12 +33,12 @@ export default function BlogIndex() {
 
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post) => (
-            <Link key={post.slug} href={`/blog/${post.slug}`} className="group relative flex flex-col overflow-hidden rounded-2xl bg-neutral-900 border border-white/10 transition-all hover:border-amber-400/40">
+            <a key={post.slug} href={`/blog/${post.slug}`} className="group relative flex flex-col overflow-hidden rounded-2xl bg-neutral-900 border border-white/10 transition-all hover:border-amber-400/40">
               {post.metadata.coverImage && (
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
                   <Image
                     src={post.metadata.coverImage}
-                    alt={post.metadata.title}
+                    alt={post.metadata.coverAlt || post.metadata.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -58,7 +66,7 @@ export default function BlogIndex() {
                   ))}
                 </div>
               </div>
-            </Link>
+            </a>
           ))}
         </div>
       </div>

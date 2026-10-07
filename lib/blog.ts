@@ -9,6 +9,9 @@ export type BlogPostMetadata = {
   date: string;
   description: string;
   coverImage?: string;
+  coverAlt?: string;
+  coverCaption?: string;
+  coverSubtitle?: string;
   tags?: string[];
 };
 
